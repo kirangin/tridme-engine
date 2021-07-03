@@ -38,17 +38,19 @@ int main(int argc, char* argv[]) {
 
 		VertexArray va;
 		VertexBuffer vb(vertices, 3 * 3 * sizeof(float));
+		IndexBuffer ib(indices, 3);
+
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 3);
-		va.AddBuffer(vb, layout);
 
-		IndexBuffer ib(indices, 3);
+		va.AddBuffer(vb, layout);
 
 		Shader shader("Basic.shader");
 		shader.Bind();
 
 		va.Unbind();
 		vb.Unbind();
+		ib.Unbind();
 		shader.Unbind();
 
 		while (!glfwWindowShouldClose(window)) {
