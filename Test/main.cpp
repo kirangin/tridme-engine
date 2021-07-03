@@ -25,12 +25,44 @@ int main(int argc, char* argv[]) {
 		glfwTerminate();
 	}
 
-	while (!glfwWindowShouldClose(window)) {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	{
+		float vertices[] = {
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f,  0.5f, 0.0f
+		};
 
-		glfwPollEvents();
-		glfwSwapBuffers(window);
+		unsigned int indices[] = {
+			0, 1, 2
+		};
+
+		VertexArray va;
+		VertexBuffer vb(vertices, 3 * 3 * sizeof(float));
+		VertexBufferLayout layout;
+		layout.Push(GL_FLOAT, 3);
+		va.AddBuffer(vb, layout);
+
+		IndexBuffer ib(indices, 3);
+
+		Shader shader("Basic.shader");
+		shader.Bind();
+
+		va.Unbind();
+		vb.Unbind();
+		shader.Unbind();
+
+		while (!glfwWindowShouldClose(window)) {
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+			va.Bind();
+			ib.Bind();
+			shader.Bind();
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+
+			glfwPollEvents();
+			glfwSwapBuffers(window);
+		}
 	}
 
 	glfwTerminate();
