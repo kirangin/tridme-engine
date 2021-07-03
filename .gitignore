@@ -1,2 +1,5 @@
-*.o
+Core/src/*.o
+Core/libcore.so
+Test/*.o
 Test/main
+Test/libcore.so
