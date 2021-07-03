@@ -2,7 +2,10 @@
 #define _RENDERER_H_
 
 #include <core.h>
-#include <engine.h>
+#include <vertex_array.h>
+#include <index_buffer.h>
+#include <camera.h>
+#include <shader.h>
 
 // #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 //   #define ASSERT(x) if (!(x)) __debugbreak();
