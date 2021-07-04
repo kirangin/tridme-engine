@@ -6,6 +6,7 @@
 #include <index_buffer.h>
 #include <camera.h>
 #include <shader.h>
+#include <vertex_buffer_layout.h>
 
 // #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 //   #define ASSERT(x) if (!(x)) __debugbreak();
@@ -44,6 +45,11 @@ class Renderer {
 
    	GLuint vbo, ebo, vao, program;
     Shader* m_shader;
+
+
+		VertexArray m_va;
+		VertexBuffer m_vb;
+		IndexBuffer m_ib;
 };
 
 #endif
