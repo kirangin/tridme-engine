@@ -2,6 +2,9 @@
 #include <logging.h>
 #include <extern/GLFW/glfw3.h>
 
+Camera* camera;
+Renderer* render;
+
 int main(int argc, char* argv[]) {
 	if (!glfwInit()) { LOG(ERROR, "Cannot Initialize GLFW!"); }
 
@@ -26,41 +29,21 @@ int main(int argc, char* argv[]) {
 	}
 
 	{
-		float vertices[] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.0f,  0.5f, 0.0f
-		};
+		glEnable(GL_DEPTH_TEST);
 
-		unsigned int indices[] = {
-			0, 1, 2
-		};
-
-		VertexArray va;
-		VertexBuffer vb(vertices, 3 * 3 * sizeof(float));
-		IndexBuffer ib(indices, 3);
-
-		VertexBufferLayout layout;
-		layout.Push(GL_FLOAT, 3);
-
-		va.AddBuffer(vb, layout);
-
-		Shader shader("Basic.shader");
-		shader.Bind();
-
-		va.Unbind();
-		vb.Unbind();
-		ib.Unbind();
-		shader.Unbind();
+		Shader* shader = new Shader("Basic.shader");
+		camera = new Camera(45.0f, 800, 600, 0.1f, 100.0f, 
+                            glm::vec3(0.0f, 0.0f, 6.0f));
+		render = new Renderer(MESH_TYPE::MESH_CUBE, camera); 
+		render->SetPosition(glm::vec3(0.0f));
+		render->SetShader(shader);
+		render->SetColor(glm::vec3(1.0f, 1.0f, 0.0f));
 
 		while (!glfwWindowShouldClose(window)) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-			va.Bind();
-			ib.Bind();
-			shader.Bind();
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+			render->DrawMesh();
 
 			glfwPollEvents();
 			glfwSwapBuffers(window);
