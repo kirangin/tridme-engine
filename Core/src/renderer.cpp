@@ -1,20 +1,5 @@
 #include <renderer.h>
 
-// #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-// void GLClearError() {
-//   while (glGetError() != GL_NO_ERROR);
-// }
-
-// bool GLogCall(const char* fnc, const char* file, int line) {
-//   while (GLenum error = glGetError()) {
-//     std::cout << "[ OpenGL Error ]: " << error << " " << fnc << " " << file << " " << line;
-//     return false;
-//   }
-
-//   return true;
-// }
-// #endif
-
 Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	this->camera = camera;
 
@@ -33,38 +18,18 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 			break;
 	}
 
-	// this->vbo.CreateFromVector(vertices, sizeof(vertex) * vertices.size());
-	// VertexBufferLayout layout;
-	// layout.Push(GL_FLOAT, 3);
-	// layout.Push(GL_FLOAT, 3);
+	m_vb.CreateFromVector(vertices, vertices.size() * sizeof(float));
+	m_ib.CreateFromVector(indices, indices.size() * sizeof(float));
 
-	// this->vao.AddBuffer(vbo, layout);
+	VertexBufferLayout m_layout;
+	m_layout.Push(GL_FLOAT, 3);
+	m_layout.Push(GL_FLOAT, 3);
 
-	// this->ib.CreateFromVector(indices, sizeof(unsigned int) * indices.size());
-	// this->vao.Unbind();
+	m_va.AddBuffer(m_vb, m_layout);
 
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
-
-	//Attributes
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (GLvoid*)0);
-
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(offsetof(vertex, vertex::color)));
-
-
-	glGenBuffers(1, &ebo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indices.size(), &indices[0], GL_STATIC_DRAW);
-
-	
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	m_va.Unbind();
+	m_vb.Unbind();
+	m_ib.Unbind();
 }
 
 Renderer::~Renderer() {
@@ -100,15 +65,12 @@ void Renderer::DrawMesh() {
 	glm::mat4 projection = camera->getProjectionMatrix();
 	m_shader->SetUniformMat4fv("projection", projection);
 
-	// this->vao.Bind();
-	// glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-
-	// this->vao.Unbind();
-
-	glBindVertexArray(vao);
+	m_va.Bind();
+	m_ib.Bind();
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
-	glBindVertexArray(0);
+	m_va.Unbind();
+	m_ib.Unbind();
 	m_shader->Unbind();
 }
 
