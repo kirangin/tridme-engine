@@ -13,7 +13,7 @@ class IndexBuffer {
     ~IndexBuffer();
 
 
-    void CreateFromVector(std::vector<unsigned int> data, unsigned int count);
+    void CreateFromVector(std::vector<unsigned int> &indices);
     void Create(const unsigned int* data, unsigned int count);
     void Bind() const;
     void Unbind() const;
