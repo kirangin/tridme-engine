@@ -18,7 +18,7 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 			break;
 	}
 
-	m_vb.CreateFromVector(vertices, vertices.size() * sizeof(float));
+	m_vb.CreateFromVector(vertices);
 	m_ib.CreateFromVector(indices);
 
 	VertexBufferLayout m_layout;
@@ -66,6 +66,7 @@ void Renderer::DrawMesh() {
 	m_shader->SetUniformMat4fv("projection", projection);
 
 	m_va.Bind();
+	m_vb.Bind();
 	m_ib.Bind();
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
