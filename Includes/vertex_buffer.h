@@ -12,7 +12,7 @@ class VertexBuffer {
     VertexBuffer(const void* data, unsigned int size);
     ~VertexBuffer();
 
-    void CreateFromVector(std::vector<vertex> data, unsigned int size);
+    void CreateFromVector(std::vector<vertex> &vertices);
     void Create(const void* data, unsigned int size);
     void Bind() const;
     void Unbind() const;
