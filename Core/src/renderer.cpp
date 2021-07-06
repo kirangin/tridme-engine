@@ -19,7 +19,7 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	}
 
 	m_vb.CreateFromVector(vertices, vertices.size() * sizeof(float));
-	m_ib.CreateFromVector(indices, indices.size() * sizeof(float));
+	m_ib.CreateFromVector(indices);
 
 	VertexBufferLayout m_layout;
 	m_layout.Push(GL_FLOAT, 3);
