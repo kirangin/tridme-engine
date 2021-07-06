@@ -9,3 +9,6 @@ main: main.o glad.o stb_image.o
 
 debug: main.o glad.o stb_image.o
 	g++ -g -o $@ $^ -I ../Includes ./libcore.so -lglfw3 -lGL -lXrandr -lX11 -lXi -ldl -lpthread
+
+clean: 
+	rm -rf main.o glad.o stb_image.o main debug libcore.so
