@@ -17,12 +17,10 @@ IndexBuffer::~IndexBuffer() {
   glDeleteBuffers(1, &m_renderer_id);
 }
 
-void IndexBuffer::CreateFromVector(std::vector<unsigned int> data, unsigned int count) {
-	m_count = count;
-
+void IndexBuffer::CreateFromVector(std::vector<unsigned int> &indices) {
 	glGenBuffers(1, &m_renderer_id);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_renderer_id);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), &data[0], GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), &indices[0], GL_STATIC_DRAW);
 }
 
 void IndexBuffer::Create(const unsigned int* data, unsigned int count) {
