@@ -1,6 +1,6 @@
 lib:
 	(cd Core && make libcore.so)
-	mv Core/libcore.so Lib/
+	cp Core/libcore.so Lib/
 
 test:
 	(cd Test && make main)
