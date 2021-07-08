@@ -4,3 +4,4 @@
 /Test/*.o
 /Test/main
 /Test/debug
+Lib/libcore.so
