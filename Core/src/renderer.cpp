@@ -28,7 +28,6 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	m_va.AddBuffer(m_vb, m_layout);
 
 	m_va.Unbind();
-	m_vb.Unbind();
 	m_ib.Unbind();
 }
 
@@ -66,7 +65,6 @@ void Renderer::DrawMesh() {
 	m_shader->SetUniformMat4fv("projection", projection);
 
 	m_va.Bind();
-	m_vb.Bind();
 	m_ib.Bind();
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
