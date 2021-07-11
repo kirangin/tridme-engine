@@ -4,7 +4,7 @@
 #include <signal.h>
 #include <iostream>
 
-#define ASSERT(x) if (!(x)) __builtin_trap(false)
+#define ASSERT(x) if (!(x)) __builtin_trap()
 
 #define GLCall(x) GLClearError();\
   x;\
