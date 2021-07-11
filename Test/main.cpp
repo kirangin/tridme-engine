@@ -32,8 +32,8 @@ int main(int argc, char* argv[]) {
 		glEnable(GL_DEPTH_TEST);
 
 		Shader* shader = new Shader("Basic.shader");
-		camera = new Camera(45.0f, 800, 600, 0.1f, 1000.0f, 
-                      glm::vec3(0.0f, 0.0f, -6.0f));
+		camera = new Camera(glm::radians(45.0f), 800, 600, 0.1f, 1000.0f, 
+                      glm::vec3(0.0f, 0.0f, -16.0f));
 		render = new Renderer(MESH_TYPE::MESH_CUBE, camera); 
 		render->SetPosition(glm::vec3(0.0f));
 		render->SetShader(shader);
