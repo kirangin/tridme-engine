@@ -2,6 +2,7 @@
 #define _VERTEX_BUFFER_H
 
 #include <mesh.h>
+#include <error.h>
 
 class VertexBuffer {
   private:

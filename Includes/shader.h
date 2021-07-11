@@ -1,6 +1,7 @@
 #ifndef _SHADER_H_
 #define _SHADER_H_
 #include <core.h>
+#include <error.h>
 
 struct ShaderProgramSource {
   std::string VertexShader;

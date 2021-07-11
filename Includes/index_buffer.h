@@ -1,6 +1,7 @@
 #ifndef _INDEX_BUFFER_H
 #define _INDEX_BUFFER_H
-#include "mesh.h"
+#include <mesh.h>
+#include <error.h>
 
 class IndexBuffer {
   private:

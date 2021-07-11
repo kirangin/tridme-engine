@@ -1,6 +1,7 @@
 #ifndef _VERTEX_ARRAY_H
 #define _VERTEX_ARRAY_H
 #include <vertex_buffer.h>
+#include <error.h>
 
 class VertexBufferLayout;
 

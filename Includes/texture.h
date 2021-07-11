@@ -1,6 +1,7 @@
 #ifndef _TEXTURE_H_
 #define _TEXTURE_H_
 #include <renderer.h>
+#include <error.h>
 
 class Texture {
   private:
