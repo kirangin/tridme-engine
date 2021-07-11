@@ -19,6 +19,7 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	}
 
 	m_vb.CreateFromVector(vertices);
+	m_va.Bind();
 	m_ib.CreateFromVector(indices);
 
 	VertexBufferLayout m_layout;
@@ -66,7 +67,7 @@ void Renderer::DrawMesh() {
 
 	m_va.Bind();
 	m_ib.Bind();
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	GLCall(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0));
 
 	m_va.Unbind();
 	m_ib.Unbind();
@@ -77,5 +78,5 @@ void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader& 
   shader.Bind();
   va.Bind();
   ib.Bind();
-  glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+  GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
