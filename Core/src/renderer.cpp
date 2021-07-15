@@ -58,12 +58,11 @@ void Renderer::DrawMesh() {
 	model = glm::translate(glm::mat4(1.0f), position);
 	m_shader->SetUniformMat4fv("model", model);
 
-	/* View */
+	/* View and Projection */
 	glm::mat4 view = camera->getViewMatrix();
-	m_shader->SetUniformMat4fv("view", view);
-
-	/* Projection */
 	glm::mat4 projection = camera->getProjectionMatrix();
+	
+	m_shader->SetUniformMat4fv("view", view);
 	m_shader->SetUniformMat4fv("projection", projection);
 
 	m_va.Bind();
