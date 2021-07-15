@@ -13,3 +13,6 @@ test-run: test
 	@echo "Running Game..."
 	(cd Test)
 	./Test/main
+
+all: lib test
+	
