@@ -33,11 +33,10 @@ int main(int argc, char* argv[]) {
 
 		Shader* shader = new Shader("Basic.shader");
 		camera = new Camera(glm::radians(45.0f), 800, 600, 0.1f, 1000.0f, 
-                      glm::vec3(0.0f, 0.0f, -16.0f));
+                    	  glm::vec3(0.0f, 0.0f, -6.0f));
 		render = new Renderer(MESH_TYPE::MESH_CUBE, camera); 
 		render->SetPosition(glm::vec3(0.0f));
 		render->SetShader(shader);
-		render->SetColor(glm::vec3(1.0f, 1.0f, 0.0f));
 
 		while (!glfwWindowShouldClose(window)) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
