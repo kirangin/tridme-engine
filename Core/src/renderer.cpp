@@ -18,8 +18,8 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 			break;
 	}
 
-	m_vb.CreateFromVector(vertices);
 	m_va.Bind();
+	m_vb.CreateFromVector(vertices);
 	m_ib.CreateFromVector(indices);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)0);
@@ -29,8 +29,8 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
                        (void*)(offsetof(vertex, vertex::color)));
   glEnableVertexAttribArray(1);  
   
+  m_vb.Unbind();
 	m_va.Unbind();
-	m_ib.Unbind();
 }
 
 Renderer::~Renderer() {
@@ -50,23 +50,18 @@ void Renderer::SetShader(Shader* shader) {
 }
 
 void Renderer::DrawMesh() {
-	glm::mat4 model = glm::mat4(1.0f);
-	
 	m_shader->Bind();
 
 	/* Model */
+	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(glm::mat4(1.0f), position);
 	m_shader->SetUniformMat4fv("model", model);
 
 	/* View and Projection */
-	glm::mat4 view = camera->getViewMatrix();
-	glm::mat4 projection = camera->getProjectionMatrix();
-	
-	m_shader->SetUniformMat4fv("view", view);
-	m_shader->SetUniformMat4fv("projection", projection);
+	glm::mat4 vp = camera->getProjectionMatrix() * camera->getViewMatrix();
+	m_shader->SetUniformMat4fv("vp", vp);
 
 	m_va.Bind();
-	m_ib.Bind();
 	GLCall(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0));
 
 	m_va.Unbind();
