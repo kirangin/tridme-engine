@@ -7,6 +7,7 @@ struct VertexBufferElement {
   unsigned int type;
   unsigned int count;
   unsigned char normalized;
+  int offset;
 
   static unsigned int GetSizeOfType(unsigned int type) {
     switch (type) {
@@ -30,8 +31,8 @@ class VertexBufferLayout {
 
     }
 
-    void Push(GLuint attribType, unsigned int count) {
-      m_elements.push_back({attribType, count, GL_FALSE});
+    void Push(GLuint attribType, unsigned int count, int offset) {
+      m_elements.push_back({attribType, count, GL_FALSE, offset});
       m_stride += count * VertexBufferElement::GetSizeOfType(GL_FLOAT);
     }
    
