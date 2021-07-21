@@ -22,12 +22,19 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	m_vb.CreateFromVector(vertices);
 	m_ib.CreateFromVector(indices);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)0);
-  glEnableVertexAttribArray(0);
+	VertexBufferLayout m_layout;
+
+	m_layout.Push(GL_FLOAT, 3, 0);
+	m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::color)));
+
+	m_va.AddBuffer(m_vb, m_layout);
+
+	// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)0);
+ //  glEnableVertexAttribArray(0);
   
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 
-                       (void*)(offsetof(vertex, vertex::color)));
-  glEnableVertexAttribArray(1);  
+ //  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 
+ //                       (void*)(offsetof(vertex, vertex::color)));
+ //  glEnableVertexAttribArray(1);  
   
   m_vb.Unbind();
 	m_va.Unbind();
