@@ -1,8 +1,10 @@
 %.o: %.cpp
-	g++ -g -c $^ -o $@ -I ../Includes
+	@g++ -g -c $^ -o $@ -I ../Includes
+	@echo " [CC] $<"
 
 %.o: %.c
-	gcc -g -c $^ -o $@ -I ../Includes
+	@gcc -g -c $^ -o $@ -I ../Includes
+	@echo " [CXX] $<"
 
 main: main.o glad.o stb_image.o
 	g++ -o $@ $^ -I ../Includes ../Lib/libcore.so -lglfw3 -lGL -lXrandr -lX11 -lXi -ldl -lpthread
