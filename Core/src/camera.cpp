@@ -50,3 +50,18 @@ void Camera::Update() {
   m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
   m_cameraUp    = glm::normalize(glm::cross(m_cameraRight, m_cameraFront));
 }
+
+void Camera::Move(GLFWwindow* window, float dt) {
+	float camSpeed = speed * dt;
+
+  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    m_cameraPosition += camSpeed * m_cameraFront;
+  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    m_cameraPosition -= camSpeed * m_cameraFront;
+  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    m_cameraPosition -= glm::normalize(glm::cross(m_cameraFront, m_cameraUp)) * camSpeed;
+  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    m_cameraPosition += glm::normalize(glm::cross(m_cameraFront, m_cameraUp)) * camSpeed;
+
+  Update();
+}

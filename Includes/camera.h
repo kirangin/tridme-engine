@@ -26,6 +26,9 @@ class Camera {
     glm::vec3 m_cameraFront;
     glm::vec3 m_cameraUp;
     glm::vec3 m_cameraRight;
+
+    /* Movements */
+    void Move(GLFWwindow* window, float dt);
 	
 	private:
 		glm::mat4 m_viewMatrix;

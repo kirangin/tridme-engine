@@ -5,6 +5,9 @@
 Camera* camera;
 Renderer* render;
 
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
 int main(int argc, char* argv[]) {
 	if (!glfwInit()) { LOG(ERROR, "Cannot Initialize GLFW!"); }
 
@@ -32,17 +35,23 @@ int main(int argc, char* argv[]) {
 		glEnable(GL_DEPTH_TEST);
 
 		Shader* shader = new Shader("Basic.shader");
-		camera = new Camera(glm::radians(45.0f), 800, 600, 0.1f, 1000.0f, 
-                    	  glm::vec3(0.0f, 2.0f, -6.0f));
-		render = new Renderer(MESH_TYPE::MESH_CUBE, camera); 
+		camera = new Camera((float) 800, (float) 600, 0.1f, 1000.0f, 
+                    	  glm::vec3(0.0f, 0.0f, 6.0f));
+		render = new Renderer(MESH_TYPE::MESH_SPHERE, camera); 
 
 		render->SetShader(shader);
 		render->SetPosition(glm::vec3(0.0f));
 
 		while (!glfwWindowShouldClose(window)) {
+			/* Each frame */
+			float currentFrame = glfwGetTime();
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+			camera->Move(window, deltaTime)	;
 			render->DrawMesh();
 
 			glfwPollEvents();
