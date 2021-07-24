@@ -14,5 +14,6 @@
 #include <extern/glm/ext/matrix_clip_space.hpp>
 #include <extern/glm/gtc/type_ptr.hpp>
 #include <extern/stbi/stb_image.h>
+#include <extern/GLFW/glfw3.h>
 
 #endif
