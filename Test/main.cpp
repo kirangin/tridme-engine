@@ -8,6 +8,10 @@ Renderer* render;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+	camera->EulerAngle(xpos, ypos);
+}
+
 int main(int argc, char* argv[]) {
 	if (!glfwInit()) { LOG(ERROR, "Cannot Initialize GLFW!"); }
 
@@ -32,6 +36,9 @@ int main(int argc, char* argv[]) {
 	}
 
 	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);  
+		glfwSetCursorPosCallback(window, mouse_callback);
+
 		glEnable(GL_DEPTH_TEST);
 
 		Shader* shader = new Shader("Basic.shader");

@@ -29,6 +29,7 @@ class Camera {
 
     /* Movements */
     void Move(GLFWwindow* window, float dt);
+    void EulerAngle(double xpos, double ypos);
 	
 	private:
 		glm::mat4 m_viewMatrix;
@@ -37,6 +38,9 @@ class Camera {
 
 		float m_width;
     float m_height;
+    float m_last_x;
+    float m_last_y;
+    float m_first_mouse;
 
 		void Update();
 };

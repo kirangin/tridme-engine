@@ -65,3 +65,30 @@ void Camera::Move(GLFWwindow* window, float dt) {
 
   Update();
 }
+
+void Camera::EulerAngle(double xpos, double ypos) {
+	if (m_first_mouse) {
+    m_last_x = xpos;
+    m_last_y = ypos;
+    m_first_mouse = false;
+  }
+
+  float xoffset = xpos - m_last_x;
+  float yoffset = m_last_y - ypos; 
+  m_last_x = xpos;
+  m_last_y = ypos;
+
+  float sensitivity = 0.1f;
+  xoffset *= sensitivity;
+  yoffset *= sensitivity;
+
+  yaw   += xoffset;
+  pitch += yoffset;
+
+  if (pitch > 89.0f)
+    pitch = 89.0f;
+  if (pitch < -89.0f)
+    pitch = -89.0f;
+
+  Update();
+}
