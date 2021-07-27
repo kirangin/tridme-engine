@@ -1,18 +1,7 @@
 lib:
 	(cd Core && make libcore.so)
+	mkdir -p Lib
 	cp Core/libcore.so Lib/
 
-test-clean:
-	(cd Test && make clean)
-
-test:
-	rm Test/main
-	(cd Test && make main)
-
-test-run: test 
-	@echo "Running Game..."
-	(cd Test)
-	./Test/main
-
-all: lib test
+all: lib
 	

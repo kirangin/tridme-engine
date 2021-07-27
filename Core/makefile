@@ -26,4 +26,4 @@ libcore.so: $(OBJS)
 	$(CXX) -shared -o $@ $^  $(PARAMS)
 
 clean: 
-	rm -rf $(OBJS) app sandbox src/main.o src/sandbox.o
+	rm -rf $(OBJS)
