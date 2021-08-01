@@ -28,13 +28,6 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::color)));
 
 	m_va.AddBuffer(m_vb, m_layout);
-
-	// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)0);
- //  glEnableVertexAttribArray(0);
-  
- //  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 
- //                       (void*)(offsetof(vertex, vertex::color)));
- //  glEnableVertexAttribArray(1);  
   
   m_vb.Unbind();
 	m_va.Unbind();
@@ -58,6 +51,8 @@ void Renderer::SetShader(Shader* shader) {
 
 void Renderer::DrawMesh() {
 	m_shader->Bind();
+
+	m_shader->SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
 
 	/* Model */
 	glm::mat4 model = glm::mat4(1.0f);
