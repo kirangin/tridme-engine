@@ -1,6 +1,6 @@
 #include <renderer.h>
 
-Renderer::Renderer(MESH_TYPE type, Camera* camera) {
+Renderer::Renderer(MESH_TYPE type, Camera* camera, bool useTexture) {
 	this->camera = camera;
 
 	switch (type) {
@@ -25,7 +25,14 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera) {
 	VertexBufferLayout m_layout;
 
 	m_layout.Push(GL_FLOAT, 3, 0);
-	m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::color)));
+
+	if (!useTexture) {
+		m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::color)));
+	} else {
+		m_layout.Push(GL_FLOAT, 2, (offsetof(vertex, vertex::texCoords)));
+
+		m_useTexture = true;
+	}
 
 	m_va.AddBuffer(m_vb, m_layout);
   
@@ -49,6 +56,10 @@ void Renderer::SetShader(Shader* shader) {
 	m_shader = shader;
 }
 
+void Renderer::SetTexture(GLuint _texture) {
+	texture = _texture;
+}
+
 void Renderer::DrawMesh() {
 	m_shader->Bind();
 
@@ -62,6 +73,9 @@ void Renderer::DrawMesh() {
 	/* View and Projection */
 	glm::mat4 vp = camera->getProjectionMatrix() * camera->getViewMatrix();
 	m_shader->SetUniformMat4fv("vp", vp);
+
+	if (m_useTexture)
+		glBindTexture(GL_TEXTURE_2D, texture);
 
 	m_va.Bind();
 	GLCall(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0));
