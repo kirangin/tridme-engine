@@ -19,6 +19,7 @@ class Texture {
 
     inline int GetWidth() const { return m_width; }
     inline int GeHeight() const { return m_height; }
+    inline GLuint GetTexture() const { return m_renderer_id; }
 };
 
 #endif
