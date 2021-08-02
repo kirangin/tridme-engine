@@ -1,0 +1,3 @@
+[submodule "tridme-test"]
+	path = tridme-test
+	url = https://github.com/naufaladrna08/tridme-test
