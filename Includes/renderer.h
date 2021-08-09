@@ -11,13 +11,16 @@
 
 class Renderer {
   public:
-  	Renderer(MESH_TYPE type, Camera* camera, bool useTexture = false);
+  	Renderer(MESH_TYPE type, Camera* camera, bool useTexture = false, bool useUniformColor = false);
   	~Renderer();
 
   	void SetPosition(glm::vec3 _position);
   	void SetColor(glm::vec3 _color);
   	void SetShader(Shader* shader);
   	void SetTexture(GLuint _texture);
+  	void SetScale(glm::vec3 _scale);
+
+		glm::vec3 GetColor();
 
   	/*
   	 * untuk menggambar bentuk yang disediakan di engine.
@@ -33,7 +36,7 @@ class Renderer {
    	Camera* camera;
    	std::vector<vertex> vertices;
    	std::vector<unsigned int> indices;
-   	glm::vec3 position, color;
+   	glm::vec3 position, color, scale;
 
    	GLuint vbo, ebo, vao, program, texture;
     Shader* m_shader;
@@ -43,7 +46,7 @@ class Renderer {
 		VertexBuffer m_vb;
 		IndexBuffer  m_ib;
 
-		bool m_useTexture;
+		bool m_useTexture, m_useUniformColor;
 };
 
 #endif

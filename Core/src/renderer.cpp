@@ -1,7 +1,8 @@
 #include <renderer.h>
 
-Renderer::Renderer(MESH_TYPE type, Camera* camera, bool useTexture) {
+Renderer::Renderer(MESH_TYPE type, Camera* camera, bool useTexture, bool useUniformColor) {
 	this->camera = camera;
+	this->scale  = glm::vec3(1.0f);
 
 	switch (type) {
 		case MESH_TRIANGLE:
@@ -25,10 +26,9 @@ Renderer::Renderer(MESH_TYPE type, Camera* camera, bool useTexture) {
 	VertexBufferLayout m_layout;
 
 	m_layout.Push(GL_FLOAT, 3, 0);
+	m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::normal)));
 
-	if (!useTexture) {
-		m_layout.Push(GL_FLOAT, 3, (offsetof(vertex, vertex::color)));
-	} else {
+	if (useTexture) {
 		m_layout.Push(GL_FLOAT, 2, (offsetof(vertex, vertex::texCoords)));
 
 		m_useTexture = true;
@@ -50,6 +50,8 @@ void Renderer::SetPosition(glm::vec3 _position) {
 
 void Renderer::SetColor(glm::vec3 _color) {
 	color = _color;
+
+	m_useUniformColor = true;
 }
 
 void Renderer::SetShader(Shader* shader) {
@@ -67,7 +69,7 @@ void Renderer::DrawMesh() {
 
 	/* Model */
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(glm::mat4(1.0f), position);
+	model = glm::scale(glm::translate(glm::mat4(1.0f), position), this->scale);
 	m_shader->SetUniformMat4fv("model", model);
 
 	/* View and Projection */
@@ -76,6 +78,10 @@ void Renderer::DrawMesh() {
 
 	if (m_useTexture)
 		glBindTexture(GL_TEXTURE_2D, texture);
+
+	if (m_useUniformColor) {
+		m_shader->SetUniform3f("outColor", this->color.x, this->color.y, this->color.z);
+	}
 
 	m_va.Bind();
 	GLCall(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0));
@@ -90,4 +96,12 @@ void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader& 
   va.Bind();
   ib.Bind();
   GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+}
+
+glm::vec3 Renderer::GetColor() {
+	return this->color;
+}
+
+void Renderer::SetScale(glm::vec3 _scale) {
+	this->scale = _scale;
 }
