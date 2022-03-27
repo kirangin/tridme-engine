@@ -4,4 +4,3 @@ lib:
 	cp Core/libcore.so Lib/
 
 all: lib
-	

@@ -10,3 +10,6 @@
 [submodule "vendors/glm"]
 	path = vendors/glm
 	url = https://github.com/Groovounet/glm
+[submodule "vendors/stbi"]
+	path = vendors/stbi
+	url = https://github.com/nothings/stb

@@ -5,3 +5,4 @@
 /Test/main
 /Test/debug
 /Libs/*
+*.o
