@@ -10,3 +10,6 @@
 [submodule "vendors/stbi"]
 	path = vendors/stbi
 	url = https://github.com/nothings/stb
+[submodule "sandbox"]
+	path = sandbox
+	url = https://github.com/naufaladrna08/tridme-sandbox
