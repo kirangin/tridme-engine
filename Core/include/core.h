@@ -8,12 +8,11 @@
 #include <vector>
 #include <unordered_map>
 
-#include <extern/glad/glad.h>
-#include <extern/glm/glm.hpp>
-#include <extern/glm/ext/matrix_transform.hpp>
-#include <extern/glm/ext/matrix_clip_space.hpp>
-#include <extern/glm/gtc/type_ptr.hpp>
-#include <extern/stbi/stb_image.h>
-#include <extern/GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
+#include <stb_image.h>
+#include <GLFW/glfw3.h>
 
 #endif

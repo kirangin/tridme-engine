@@ -7,9 +7,9 @@
 #include <vector>
 #include <mesh.h>
 
-#include <extern/glm/glm.hpp>
-#include <extern/glm/gtc/type_ptr.hpp>
-#include <extern/glm/gtc/matrix_transform.hpp>
+#include <glm.hpp>
+#include <gtc/type_ptr.hpp>
+#include <gtc/matrix_transform.hpp>
 
 class MeshRenderer {
 	public:
