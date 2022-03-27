@@ -1,9 +1,6 @@
 [submodule "tridme-test"]
 	path = tridme-test
 	url = https://github.com/naufaladrna08/tridme-test
-[submodule "vendors/glad"]
-	path = vendors/glad
-	url = https://github.com/Dav1dde/glad
 [submodule "vendors/glfw"]
 	path = vendors/glfw
 	url = https://github.com/glfw/glfw
