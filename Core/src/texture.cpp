@@ -1,5 +1,5 @@
 #include <texture.h>
-#include <extern/stbi/stb_image.h>
+#include <stb_image.h>
 
 Texture::Texture(const std::string &path)
   : m_filepath(path),
