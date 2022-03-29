@@ -1,6 +1,6 @@
 #ifndef ERROR_H
 #define ERROR_H
-#include <glad/glad.h>
+#include <glad/include/glad.h>
 #include <signal.h>
 #include <iostream>
 

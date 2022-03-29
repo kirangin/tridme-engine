@@ -47,8 +47,8 @@ void Camera::Update() {
   front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
   m_cameraFront = glm::normalize(front);
   // also re-calculate the Right and Up vector
-  // m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
-  // m_cameraUp    = glm::normalize(glm::cross(m_cameraRight, m_cameraFront));
+  m_cameraRight = glm::normalize(glm::cross(m_cameraFront, m_cameraUp));
+  m_cameraUp    = glm::normalize(glm::cross(m_cameraRight, m_cameraFront));
 }
 
 void Camera::Move(GLFWwindow* window, float dt) {

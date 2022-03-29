@@ -1,8 +1,8 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <glad/include/glad.h>
+#include <glfw/include/GLFW/glfw3.h>
 #include <logging.h>
 #include <iostream>
 

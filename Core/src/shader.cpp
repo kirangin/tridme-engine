@@ -1,10 +1,9 @@
 #include <shader.h>
 #include <iostream>
-#include <glad/glad.h>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <gtc/type_ptr.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Shader::Shader(const std::string& filepath)
   : m_filepath(filepath),

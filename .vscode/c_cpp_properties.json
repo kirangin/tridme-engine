@@ -5,12 +5,10 @@
             "includePath": [
                 "/usr/local/include",
                 "${workspaceFolder}/Core/include",
-                "${workspaceFolder}/vendors/glad/include",
-                "${workspaceFolder}/vendors/glfw/include",
-                "${workspaceFolder}/vendors/glm/glm",
-                "${workspaceFolder}/vendors/imgui",
-                "${workspaceFolder}/vendors/stbi",
-                "${workspaceFolder}/vendors/glad/include/glad"
+                "${workspaceFolder}/vendors",
+                "${workspaceFolder}/vendors/glm",
+                "${workspaceFolder}/vendors/glfw",
+                "${workspaceFolder}/vendors/glad"
             ],
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
