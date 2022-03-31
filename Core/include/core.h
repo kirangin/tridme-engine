@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 
 #include <glad/include/glad.h>
 #include <glm/glm.hpp>
