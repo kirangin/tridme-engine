@@ -9,44 +9,46 @@
 #include <vertex_buffer_layout.h>
 #include <error.h>
 
-class Renderer {
-  public:
-  	Renderer(MESH_TYPE type, Camera* camera, bool useTexture = false, bool useUniformColor = false);
-  	~Renderer();
+namespace Tridme {
+	class Renderer {
+		public:
+			Renderer(MESH_TYPE type, Camera* camera, bool useTexture = false, bool useUniformColor = false);
+			~Renderer();
 
-  	void SetPosition(glm::vec3 _position);
-  	void SetColor(glm::vec3 _color);
-  	void SetShader(Shader* shader);
-  	void SetTexture(GLuint _texture);
-  	void SetScale(glm::vec3 _scale);
+			void SetPosition(glm::vec3 _position);
+			void SetColor(glm::vec3 _color);
+			void SetShader(Shader* shader);
+			void SetTexture(GLuint _texture);
+			void SetScale(glm::vec3 _scale);
 
-		glm::vec3 GetColor();
+			glm::vec3 GetColor();
 
-  	/*
-  	 * untuk menggambar bentuk yang disediakan di engine.
-  	 */
-  	void DrawMesh();
+			/*
+			* untuk menggambar bentuk yang disediakan di engine.
+			*/
+			void DrawMesh();
 
-  	/*
-  	 * sama aja, tapi bikin vertex array sendiri.
-  	 */
-    void Draw(const VertexArray &va, const IndexBuffer &ib, const Shader& shader) const;
+			/*
+			* sama aja, tapi bikin vertex array sendiri.
+			*/
+			void Draw(const VertexArray &va, const IndexBuffer &ib, const Shader& shader) const;
 
-  private:
-   	Camera* camera;
-   	std::vector<vertex> vertices;
-   	std::vector<unsigned int> indices;
-   	glm::vec3 position, color, scale;
+		private:
+			Camera* camera;
+			std::vector<vertex> vertices;
+			std::vector<unsigned int> indices;
+			glm::vec3 position, color, scale;
 
-   	GLuint vbo, ebo, vao, program, texture;
-    Shader* m_shader;
+			GLuint vbo, ebo, vao, program, texture;
+			Shader* m_shader;
 
 
-		VertexArray  m_va;
-		VertexBuffer m_vb;
-		IndexBuffer  m_ib;
+			VertexArray  m_va;
+			VertexBuffer m_vb;
+			IndexBuffer  m_ib;
 
-		bool m_useTexture, m_useUniformColor;
-};
+			bool m_useTexture, m_useUniformColor;
+	};
+}
 
 #endif

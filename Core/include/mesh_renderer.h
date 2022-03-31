@@ -11,19 +11,20 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class MeshRenderer {
-	public:
-		MeshRenderer(MESH_TYPE type, Camera* _camera);
-		~MeshRenderer();
+namespace Tridme {
+	class MeshRenderer {
+		public:
+			MeshRenderer(MESH_TYPE type, Camera* _camera);
+			~MeshRenderer();
 
-		void SetPosition(glm::vec3 _postion);
-		void SetScale(glm::vec3 _scale);
-		void SetProgram(Shader* shader);
-		void SetTexture(Texture* texture);
+			void SetPosition(glm::vec3 _postion);
+			void SetScale(glm::vec3 _scale);
+			void SetProgram(Shader* shader);
+			void SetTexture(Texture* texture);
 
-	private:
-		Camera* camera;
-};
-
+		private:
+			Camera* camera;
+	};
+}
 
 #endif

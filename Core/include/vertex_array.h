@@ -3,19 +3,21 @@
 #include <vertex_buffer.h>
 #include <error.h>
 
-class VertexBufferLayout;
+namespace Tridme {
+  class VertexBufferLayout;
 
-class VertexArray {
-  private:
-    unsigned int m_renderer_id;
-  public:
-    VertexArray();
-    ~VertexArray();
+  class VertexArray {
+    private:
+      unsigned int m_renderer_id;
+    public:
+      VertexArray();
+      ~VertexArray();
 
-    void AddBuffer(const VertexBuffer &vb, const VertexBufferLayout &layout);
+      void AddBuffer(const VertexBuffer &vb, const VertexBufferLayout &layout);
 
-    void Bind() const;
-    void Unbind() const;
-};
+      void Bind() const;
+      void Unbind() const;
+  };
+}
 
 #endif
