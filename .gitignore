@@ -7,3 +7,4 @@
 /Lib/
 /Lib/libcore.so
 *.o
+/build
