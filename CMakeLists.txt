@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(vendors/glfw)
 add_subdirectory(vendors/imgui)
-add_subdirectory(Core)
+add_subdirectory(core)
 add_subdirectory(sandbox)
 
 file(GLOB SHADERS

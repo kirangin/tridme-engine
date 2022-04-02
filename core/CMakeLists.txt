@@ -1,4 +1,4 @@
-include_directories(${CMAKE_SOURCE_DIR}/Core/include)
+include_directories(${CMAKE_SOURCE_DIR}/core/include)
 include_directories(${CMAKE_SOURCE_DIR}/vendors)
 include_directories(${CMAKE_SOURCE_DIR}/vendors/glm)
 include_directories(${CMAKE_SOURCE_DIR}/vendors/glad)

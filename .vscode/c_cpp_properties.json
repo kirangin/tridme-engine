@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "/usr/local/include",
-                "${workspaceFolder}/Core/include",
+                "${workspaceFolder}/core/include",
                 "${workspaceFolder}/vendors",
                 "${workspaceFolder}/vendors/glm",
                 "${workspaceFolder}/vendors/glfw",
