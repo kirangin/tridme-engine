@@ -19,6 +19,7 @@ add_library(tridme SHARED
   src/vertex_array.cpp
   src/vertex_buffer.cpp
   src/stb_image.cpp
+  src/window.cpp
 )
 
 target_link_libraries(tridme -lGL -lX11 -lpthread -lXrandr -lXi -ldl)
