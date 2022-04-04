@@ -6,13 +6,15 @@ namespace Tridme {
     m_height = h;
     m_title = t;
 
+    glfwInit();
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    m_window = glfwCreateWindow(w, h, t, nullptr, nullptr);
+    m_window = glfwCreateWindow(w, h, t, NULL, NULL);
 
-    if (m_window == nullptr) {
+    if (m_window == NULL) {
       LOG(ERROR, "Cannot create GLFW window");
     }
 
@@ -37,7 +39,7 @@ namespace Tridme {
     event->SetKeyCallback(Window::KeyCallback);
   }
 
-  void Window::OnRender() {
+  void Window::Run() {
     while (m_running) {
       OnEvent();
     }
