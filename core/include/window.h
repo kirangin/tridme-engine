@@ -5,6 +5,7 @@
 #include <glfw/include/GLFW/glfw3.h>
 #include <logging.h>
 #include <iostream>
+#include <event.h>
 
 namespace Tridme {
   class Window {
@@ -17,12 +18,13 @@ namespace Tridme {
       void OnRender();
       void OnEvent();
 
-      void TRIDME_KEY_CALLBACK(GLFWwindow* window, int key, int scancode, int action, int mods);
+      void static KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
     private:
       int m_width, m_height;
       const char* m_title;
       GLFWwindow* m_window;
+      Event* event;
       bool m_running = true;
   };
 }

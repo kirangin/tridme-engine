@@ -25,6 +25,8 @@ namespace Tridme {
     }
 
     glfwMakeContextCurrent(m_window);
+
+    event = new Event(m_window);
   }
 
   Window::~Window() {
@@ -32,16 +34,16 @@ namespace Tridme {
   }
 
   void Window::OnEvent() {
-    glfwSetKeyCallback(m_window, TRIDME_KEY_CALLBACK);
+    event->SetKeyCallback(Window::KeyCallback);
   }
 
   void Window::OnRender() {
     while (m_running) {
-
+      OnEvent();
     }
   }
 
-  void Window::TRIDME_KEY_CALLBACK(GLFWwindow* window, int key, int scancode, int action, int mods)  {
+  void Window::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)  {
     if (key == GLFW_KEY_E && action == GLFW_PRESS)
       std::cout << "PRESSED" << std::endl;
   }
