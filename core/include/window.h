@@ -14,8 +14,9 @@ namespace Tridme {
       ~Window();
 
       inline void Close() { glfwSetWindowShouldClose(m_window, true); };
+      inline GLFWwindow* GetInstance() { return m_window; }
       
-      void OnRender();
+      void Run();
       void OnEvent();
 
       void static KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
