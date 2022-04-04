@@ -9,5 +9,6 @@
 #include <texture.h>
 #include <mesh.h>
 #include <camera.h>
+#include <window.h>
 
 #endif
