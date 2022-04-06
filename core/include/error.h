@@ -9,7 +9,7 @@ namespace Tridme {
   #define ASSERT(x) if (!(x)) __builtin_trap()
 
   #define GLCall(x) GLClearError();\
-    x;\
+    ;\
     ASSERT(GLCheckError())
 
   static void GLClearError() {
