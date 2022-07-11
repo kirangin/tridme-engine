@@ -11,4 +11,17 @@
 #include <camera.h>
 #include <window.h>
 
+namespace Tridme {
+  class Engine {
+    public: 
+      Engine(int argc, char** argv);
+      ~Engine();
+
+      void Start();
+
+    private:
+      Window* m_window;
+  }; 
+}
+
 #endif
