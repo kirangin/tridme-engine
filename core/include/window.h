@@ -13,19 +13,19 @@ namespace Tridme {
       Window(int w, int h, const char* t);
       ~Window();
 
+      Window& window();
+
       inline void Close() { glfwSetWindowShouldClose(m_window, true); };
       inline GLFWwindow* GetInstance() { return m_window; }
-      
       void Run();
-      void OnEvent();
 
-      void static KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+      /* Event Handlers */
+      static void KeyCallback(GLFWwindow* handle, int key, int scancode, int action, int mods);
 
     private:
       int m_width, m_height;
       const char* m_title;
       GLFWwindow* m_window;
-      Event* event;
       bool m_running = true;
   };
 }

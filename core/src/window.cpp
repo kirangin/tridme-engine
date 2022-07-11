@@ -1,6 +1,10 @@
 #include <window.h>
 
 namespace Tridme {
+  Window& windowFromHandle(GLFWwindow* handle) {
+    return ((Window*) glfwGetWindowUserPointer(handle))->window();
+  }
+
   Window::Window(int w, int h, const char* t) {
     m_width = w;
     m_height = h;
@@ -13,6 +17,8 @@ namespace Tridme {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     m_window = glfwCreateWindow(w, h, t, NULL, NULL);
+
+    glfwSetKeyCallback(m_window, KeyCallback);
 
     if (m_window == NULL) {
       LOG(ERROR, "Cannot create GLFW window");
@@ -27,26 +33,28 @@ namespace Tridme {
     }
 
     glfwMakeContextCurrent(m_window);
-
-    event = new Event(m_window);
   }
 
   Window::~Window() {
     
   }
 
-  void Window::OnEvent() {
-    event->SetKeyCallback(Window::KeyCallback);
+  Window& Window::window() {
+    return *this;
   }
 
   void Window::Run() {
-    while (m_running) {
-      OnEvent();
+    while (!glfwWindowShouldClose(m_window)) {
+      glClear(GL_COLOR_BUFFER_BIT);
+      glfwPollEvents();
+      glfwSwapBuffers(m_window);
     }
   }
 
-  void Window::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)  {
+  void Window::KeyCallback(GLFWwindow* handle, int key, int scancode, int action, int mods) {
+    Window& window = windowFromHandle(handle);
+
     if (key == GLFW_KEY_E && action == GLFW_PRESS)
-      std::cout << "PRESSED" << std::endl;
+      LOG(INFO, "TEST");
   }
 }
