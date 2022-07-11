@@ -7,10 +7,11 @@ namespace Tridme {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
+
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-    // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;      // Enable Gamepad Controls
-    // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;      // Enable Gamepad Controls
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;      // Enable Gamepad Controls
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;      // Enable Gamepad Controls
 
     ImGui::StyleColorsDark();
   }
@@ -50,6 +51,15 @@ namespace Tridme {
   void GuiLayer::ImGuiEnd() {
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    ImGuiIO& io = ImGui::GetIO(); (void) io;
+
+    if (io.ConfigFlags& ImGuiConfigFlags_ViewportsEnable) {
+      GLFWwindow* backup_current = glfwGetCurrentContext();
+      ImGui::UpdatePlatformWindows();
+      ImGui::RenderPlatformWindowsDefault();
+      glfwMakeContextCurrent(backup_current);
+    }
   };
 
   void GuiLayer::ImGuiRender() {
