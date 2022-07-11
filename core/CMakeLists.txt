@@ -21,6 +21,8 @@ add_library(tridme SHARED
   src/stb_image.cpp
   src/window.cpp
   src/event.cpp
+  src/engine.cpp
+  src/logging.cpp
 )
 
 target_link_libraries(tridme -lGL -lX11 -lpthread -lXrandr -lXi -ldl)
