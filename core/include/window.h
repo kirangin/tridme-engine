@@ -6,8 +6,11 @@
 #include <logging.h>
 #include <iostream>
 #include <event.h>
+#include <layer.h>
+#include <layer_stack.h>
+#include <gui_layer.h>
 
-namespace Tridme {
+namespace Tridme {  
   class Window {
     public: 
       Window(int w, int h, const char* t);
@@ -27,7 +30,15 @@ namespace Tridme {
       const char* m_title;
       GLFWwindow* m_window;
       bool m_running = true;
+
+      LayerStack m_layers;
+      GuiLayer* m_guiLayers;
+
+      float m_deltaTime = 0.0f;
+      float m_lastFrame = 0.0f;
   };
+
+  Window& windowFromHandle(GLFWwindow* handle);
 }
 
 #endif // __WINDOW_H__

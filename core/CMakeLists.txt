@@ -23,6 +23,9 @@ add_library(tridme SHARED
   src/event.cpp
   src/engine.cpp
   src/logging.cpp
+  src/layer.cpp
+  src/layer_stack.cpp
+  src/gui_layer.cpp
 )
 
 target_link_libraries(tridme -lGL -lX11 -lpthread -lXrandr -lXi -ldl)

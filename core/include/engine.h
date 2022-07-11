@@ -10,6 +10,8 @@
 #include <mesh.h>
 #include <camera.h>
 #include <window.h>
+#include <layer.h>
+#include <layer_stack.h>
 
 namespace Tridme {
   class Engine {
