@@ -8,7 +8,11 @@
                 "${workspaceFolder}/vendors",
                 "${workspaceFolder}/vendors/glm",
                 "${workspaceFolder}/vendors/glfw",
-                "${workspaceFolder}/vendors/glad"
+                "${workspaceFolder}/vendors/glad",
+                "${workspaceFolder}/core/include",
+                "${workspaceFolder}/core/include",
+                "${workspaceFolder}/vendors",
+                "${workspaceFolder}/core/include"
             ],
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
