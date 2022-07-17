@@ -12,6 +12,7 @@ add_subdirectory(vendors/glfw)
 add_subdirectory(vendors/imgui)
 add_subdirectory(core)
 add_subdirectory(sandbox)
+add_subdirectory(editor)
 
 file(GLOB SHADERS
   "sandbox/*.shader"
