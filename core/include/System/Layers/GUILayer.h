@@ -20,9 +20,9 @@ namespace Tridme {
       virtual void OnUpdate(float deltaTime);
       virtual void OnEvent();
 
-      void ImGuiBegin();
-      void ImGuiEnd();
-      void ImGuiRender();
+      virtual void ImGuiBegin();
+      virtual void ImGuiEnd();
+      virtual void ImGuiRender();
 
     private:
       std::string m_layerName;

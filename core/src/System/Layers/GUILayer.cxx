@@ -161,15 +161,5 @@ namespace Tridme {
     }
 
     ImGui::End();
-
-    // if (ImGui::Begin("Editor"), &p_open, window_flags) {
-    //   static char text[1024 * 16] = "";
-    //   static ImGuiInputTextFlags flags = ImGuiInputTextFlags_AllowTabInput;
-      
-    //   ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16), flags);
-
-    //   ImGui::End();
-    // }
-
   };
 }
