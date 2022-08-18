@@ -24,6 +24,7 @@ namespace Tridme {
 
       /* Event Handlers */
       static void KeyCallback(GLFWwindow* handle, int key, int scancode, int action, int mods);
+      LayerStack m_layers;
 
     private:
       int m_width, m_height;
@@ -31,7 +32,6 @@ namespace Tridme {
       GLFWwindow* m_window;
       bool m_running = true;
 
-      LayerStack m_layers;
       GuiLayer* m_guiLayers;
 
       float m_deltaTime = 0.0f;

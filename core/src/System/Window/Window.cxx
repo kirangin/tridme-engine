@@ -16,7 +16,7 @@ namespace Tridme {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
+    // glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
     /* Create Window */
     m_window = glfwCreateWindow(w, h, t, NULL, NULL);
@@ -39,17 +39,9 @@ namespace Tridme {
       glfwTerminate();
     }
 
-    m_guiLayers = new GuiLayer();
-    m_layers.PushOverlay(m_guiLayers);
-
-    /**
-     * Apply layers
-     */
     for (Layer* layer : m_layers) {
       layer->OnAttach();
     }
-
-    m_guiLayers->OnAttach(m_window);
   }
 
   Window::~Window() {
@@ -59,7 +51,6 @@ namespace Tridme {
       layer->OnDetach();
     }
 
-    m_guiLayers->OnAttach(m_window);
   }
 
   Window& Window::window() {
@@ -79,13 +70,6 @@ namespace Tridme {
       for (Layer* layer : m_layers) {
         layer->OnUpdate(m_deltaTime);
       }
-
-      m_guiLayers->ImGuiBegin();
-      // for (Layer* layer : m_layers) {
-      //   layer->OnImGuiRender();
-      // }
-      m_guiLayers->ImGuiRender();
-      m_guiLayers->ImGuiEnd();
 
       glfwSwapBuffers(m_window);
     }
