@@ -20,6 +20,7 @@ namespace Tridme {
       ~Engine();
 
       void Start();
+      void Start(Window& window);
 
     private:
       Window* m_window;
