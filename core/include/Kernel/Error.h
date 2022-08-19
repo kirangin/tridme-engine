@@ -5,13 +5,6 @@
 #include <iostream>
 
 namespace Tridme {
-
-  #define ASSERT(x) if (!(x)) __builtin_trap()
-
-  #define GLCall(x) GLClearError();\
-    ;\
-    ASSERT(GLCheckError())
-
   static void GLClearError() {
     while (glGetError() != GL_NO_ERROR);
   }
@@ -50,6 +43,13 @@ namespace Tridme {
     }
     return true;
   }
+
+  #define ASSERT(x) if (!(x)) __builtin_trap()
+
+  #define GLCall(x) Tridme::GLClearError();\
+    x\
+    ;\
+    ASSERT(Tridme::GLCheckError())
 }
 
 #endif
