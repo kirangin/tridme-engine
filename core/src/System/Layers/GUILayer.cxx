@@ -4,6 +4,8 @@
 namespace Tridme {
   GuiLayer::GuiLayer(const std::string& name) 
   : m_layerName(name) {
+
+    //Tambah comment
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
